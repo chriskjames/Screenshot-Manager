@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Screenshot Manager </title>
+    </head>
+    <body>
+        <h1>Screenshot Manager</h1>
+        <h3>Hello, I'm a screenshot manager that will help you detect old photos and delete them for you as requested!</h3>
+
+        <p>Total screenshots found: {{ total }}</p>
+        <p>Old screenshots found:{{ old }}</p>
+        
+        {% if screenshot %}
+        <!-- hidden used to send data to server without showing user, grabbing doc_path, seeing if it's an old pic, etc.-->
+        <form method="POST" action="{{ url_for('skip') }}">
+            <input type="hidden" name="doc_path" value="{{ doc_path }}">
+            <input type="hidden" name="old_pic" value="{{ old_pic }}">
+            <input type="hidden" name="index" value="{{ index }}">
+            <input type="hidden" name="filepath" value="{{ screenshot.path }}">
+            <button type="submit">Skip</button>
+        </form>
+
+        <form method="POST" action="{{ url_for('delete') }}">
+            <input type="hidden" name="doc_path" value="{{ doc_path }}">
+            <input type="hidden" name="old_pic" value="{{ old_pic }}">
+            <input type="hidden" name="index" value="{{ index }}">
+            <input type="hidden" name="filepath" value="{{ screenshot.path }}">
+            <button type="submit">Delete</button>
+        </form>
+
+            <h4>Screenshot: {{ screenshot.filename }} ({{ screenshot.days_old }} days old)</h4>
+            <img src="{{ url_for('image') }}?filepath={{ screenshot.path }}" alt="Screenshot" width="600"/>
+        {% else %}
+            <p>No screenshots found.</p>
+        {% endif %}
+    </body>
+</html> 

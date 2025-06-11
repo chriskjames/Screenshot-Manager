@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Screenshot Settings</title>
+</head>
+<body>
+    <h2>Screenshot Manager Setup</h2>
+    <form method="POST" action="/">
+        <!-- Similar to input statment used in python. Asking for doc path -->
+        <label for="doc_path">Enter directory path:</label><br>
+        <input type="text" id="doc_path" name="doc_path" required><br><br>
+        
+        <!-- Similar to input statment used in python. Asking for number of days using a number type -->
+        <label for="old_pic">Days to consider a screenshot old:</label><br>
+        <input type="number" id="old_pic" name="old_pic" value="200" min="0" required><br><br>
+
+        <input type="submit" value="Start Review">
+    </form>
+</body>
+</html>
